@@ -180,18 +180,19 @@ chmod +x "$ROOT_PREFIX/launcher.sh"
 echo '...'
 
 prefix="$WINEPREFIX"
-cat <<EOF > "~/.local/share/applications/sap-gui.desktop"
+cat <<EOF > ~/.local/share/applications/sap-gui.desktop
 [Desktop Entry]
-Type=Application
 Name=SAP GUI
 Comment=Acessar o SAP via Wine
-Icon=11CB_saplogon.0
 
-Exec=env WINEPREFIX="$WINEPREFIX" PATH="$ROOT_PREFIX/.wine/wine-11.0-amd64-wow64/bin:$PATH" LD_LIBRARY_PATH="$ROOT_PREFIX/.wine/wine-11.0-amd64-wow64/lib:$LD_LIBRARY_PATH" WINEARCH=win64 wine "C:\\SAP\\SAPgui\\saplogon.exe"
-Path=$prefix
+Exec=env WINEPREFIX="$WINEPREFIX" PATH="$ROOT_PREFIX/.wine/wine-11.0-amd64-wow64/bin:\$PATH" LD_LIBRARY_PATH="$ROOT_PREFIX/.wine/wine-11.0-amd64-wow64/lib:\$LD_LIBRARY_PATH" WINEARCH=win64 wine "C:\\SAP\\SAPgui\\saplogon.exe"
+
+Icon=11CB_saplogon.0
 Terminal=false
+Type=Office
+Type=Application;
 
 EOF
-chmod +x "~/.local/share/applications/sap-gui.desktop"
+chmod +x ~/.local/share/applications/sap-gui.desktop
 
 echo 'instalação concluida'
