@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=SAP GUI
-Comment=Acessar o SAP via Wine
-TryExec=env WINEPREFIX="/mnt/sda1/.wine/prefix/SAP_GUI_WIME" PATH="/mnt/sda1/.wine/.wine/wine-11.0-amd64-wow64/bin:$PATH" LD_LIBRARY_PATH="/mnt/sda1/.wine/.wine/wine-11.0-amd64-wow64/lib:$LD_LIBRARY_PATH" WINEARCH="win64" wine "C:\\SAP\SAPgui\saplogon.exe"
-Exec=env WINEPREFIX="/mnt/sda1/.wine/prefix/SAP_GUI_WIME" PATH="/mnt/sda1/.wine/.wine/wine-11.0-amd64-wow64/bin:$PATH" LD_LIBRARY_PATH="/mnt/sda1/.wine/.wine/wine-11.0-amd64-wow64/lib:$LD_LIBRARY_PATH" WINEARCH="win64" wine "C:\\SAP\SAPgui\saplogon.exe"
-Icon=11CB_saplogon.0
-X-ExecArg=--
