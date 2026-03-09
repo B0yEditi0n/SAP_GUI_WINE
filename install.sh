@@ -58,6 +58,7 @@ export WINEARCH=win64
 
 echo "1) Instalar"
 echo "2) Abrir o CFG"
+echo "3) Abrir o Winetricks"
 echo "0) Sair"
 
 read -p "Escolha: " opcao
@@ -69,6 +70,11 @@ case $opcao in
   2)
     echo "Abrindo CFG..."
     winecfg
+    exit 
+    ;;
+  3)
+    echo "Abrindo Winetricks..."
+    winetricks
     exit 
     ;;
   0)
