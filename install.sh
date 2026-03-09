@@ -112,6 +112,8 @@ sudo winetricks --self-update
 # winetricks -q win10 # windows padrão é o 10
 winetricks -q corefonts
 
+winetricks -q d3dx11_42
+winetricks -q d3dx11_43
 winetricks -q dxvk     # A Renderição do Aplicação Exige
 winetricks -q msxml6
 winetricks -q mfc140 
