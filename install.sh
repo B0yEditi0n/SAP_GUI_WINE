@@ -94,6 +94,7 @@ echo "Usando prefix: $WINEPREFIX"
 read -p "Deseja continuar? (s/n): " resposta
 
 if [[ "$resposta" == "s" ]]; then
+    mkdir -p "$ROOT_PREFIX/prefix"
     echo "Continuando..."
 else
     echo "Cancelado"
@@ -123,6 +124,10 @@ set +e
 winetricks -q ie8
 set -e
 
+# INICIO: Teste de integração Chromium
+# FIM: Teste de integração Chromium
+wine msiexec /i setup/wine-mono-11.0.0-x86.msi
+winetricks dotnet48
 # instala o Gecko para melhorar a compatibilidade de paginas 
 # renderizadas pelo IE
 if ! compgen -G "wine-gecko-*.msi" > /dev/null; then
