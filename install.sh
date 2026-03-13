@@ -140,8 +140,8 @@ set -e
 
 # INICIO: Teste de integração Chromium
 # FIM: Teste de integração Chromium
-#wine msiexec /i setup/wine-mono-11.0.0-x86.msi
-#wine msiexec /i setup/wine-gecko-2.47.4-x86_64.msi
+wine msiexec /i setup/wine-mono-11.0.0-x86.msi
+wine msiexec /i setup/wine-gecko-2.47.4-x86_64.msi
 echo "instalação do Dotnet48"
 winetricks -q dotnet48
 
@@ -151,7 +151,7 @@ winetricks -q webview2
 echo "instalação do pactoes VisualStudio"
 winetricks -q vcrun2012
 winetricks -q vcrun2015
-winetricks -q vcrun2022
+#winetricks -q vcrun2022
 
 wine winecfg -v win10
 
@@ -168,8 +168,8 @@ sap_prefix="${PWD}/BD_NW_7.0_Presentation_7.70_Comp._1_/PRES1/GUI/Windows/Win32"
 
 # Tenta Instalar o VC na pasta do SAP
 set +e
-wine "${sap_prefix}/System/VC12/vc12redist_x64.exe"
-wine "${sap_prefix}/System/VC15/vc15redist_x64.exe"
+#wine "${sap_prefix}/System/VC12/vc12redist_x64.exe"
+#wine "${sap_prefix}/System/VC15/vc15redist_x64.exe"
 wine "${sap_prefix}/SetupAll.exe"
 set -e
 
