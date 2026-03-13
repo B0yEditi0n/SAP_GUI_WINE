@@ -31,7 +31,7 @@ command -v cabextract >/dev/null || sudo apt install -y cabextract
 if [ -n $SAPGUI_WINEPREFIX ]; then
     ROOT_PREFIX=$SAPGUI_WINEPREFIX 
 else
-    ROOT_PREFIX=$WINEPREFIX 
+    ROOT_PREFIX="$HOME/sap_wine_prefix"
 fi
 
 WINE_MAJOR=$(wine --version | cut -d'.' -f1 | sed 's/wine-//')
@@ -128,7 +128,7 @@ winetricks -q vcrun6
 
 # Teste para integrar o edge
 winetricks -q atmlib
-winetricks -q gdiplus
+#winetricks -q gdiplus
 winetricks -q msxml3
 winetricks -q riched20
 winetricks -q riched30
@@ -168,8 +168,8 @@ sap_prefix="${PWD}/BD_NW_7.0_Presentation_7.70_Comp._1_/PRES1/GUI/Windows/Win32"
 
 # Tenta Instalar o VC na pasta do SAP
 set +e
-#wine "${sap_prefix}/System/VC12/vc12redist_x64.exe"
-#wine "${sap_prefix}/System/VC15/vc15redist_x64.exe"
+wine "setup/vc12redist_x64.exe"
+wine "setup/vc15redist_x64.exe"
 wine "${sap_prefix}/SetupAll.exe"
 set -e
 
@@ -204,7 +204,7 @@ WINE="$PWD/.wine/wine-11.0-amd64-wow64/bin/wine"
 
 wineserver -p
 
-"$WINE" "$WINEPREFIX/drive_c/SAP/SAPgui/saplogon.exe"
+"$WINE" "C://Program Files (x86)/SAP/FrontEnd/SAPgui/saplogon.exe"
 EOF
 chmod +x "$ROOT_PREFIX/launcher.sh"
 
