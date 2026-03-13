@@ -23,7 +23,11 @@ command -v cabextract >/dev/null || sudo apt install -y cabextract
 # WINE
 ######################################
 
-# baixando o wine especifico]
+# baixando o wine especifico
+
+
+
+
 if [ -n $SAPGUI_WINEPREFIX ]; then
     ROOT_PREFIX=$SAPGUI_WINEPREFIX 
 else
@@ -45,10 +49,10 @@ if [[ "$WINE_MAJOR" -lt 11 ]]; then
 fi
  
 if [[ ! -d "$ROOT_PREFIX/prefix" ]]; then
-    mkdir -p "$WINEPREFIX/prefix"
+    mkdir -p "$ROOT_PREFIX/prefix"
 fi
 export WINEPREFIX="$ROOT_PREFIX/prefix/SAP_GUI_WIME"
-export WINEARCH=win32
+export WINEARCH=win64
 # export WINEDEBUG=-all para melhor ver logs de erro
 
 
@@ -145,9 +149,8 @@ echo "instalação do Webview2"
 winetricks -q webview2
 
 echo "instalação do pactoes VisualStudio"
-winetricks -q vcrun2013
+winetricks -q vcrun2012
 winetricks -q vcrun2015
-winetricks -q vcrun2019
 winetricks -q vcrun2022
 
 wine winecfg -v win10
