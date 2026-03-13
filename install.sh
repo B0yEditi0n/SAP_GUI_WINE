@@ -48,7 +48,7 @@ if [[ ! -d "$ROOT_PREFIX/prefix" ]]; then
     mkdir -p "$WINEPREFIX/prefix"
 fi
 export WINEPREFIX="$ROOT_PREFIX/prefix/SAP_GUI_WIME"
-export WINEARCH=win64
+export WINEARCH=win32
 # export WINEDEBUG=-all para melhor ver logs de erro
 
 
@@ -116,24 +116,39 @@ winetricks -q corefonts
 winetricks -q d3dx11_42
 winetricks -q d3dx11_43
 winetricks -q dxvk     # A Renderição do Aplicação Exige
+winetricks -q vkd3d
 winetricks -q msxml6
 winetricks -q mfc140 
 winetricks -q vb6run
 winetricks -q vcrun6
+
+# Teste para integrar o edge
+winetricks -q atmlib
+winetricks -q gdiplus
+winetricks -q msxml3
+winetricks -q riched20
+winetricks -q riched30
+# fim do teste 
+
 set +e
 winetricks -q ie8
 set -e
 
 # INICIO: Teste de integração Chromium
 # FIM: Teste de integração Chromium
-wine msiexec /i setup/wine-mono-11.0.0-x86.msi
-winetricks dotnet48
-# instala o Gecko para melhorar a compatibilidade de paginas 
-# renderizadas pelo IE
-if ! compgen -G "wine-gecko-*.msi" > /dev/null; then
-    wget https://dl.winehq.org/wine/wine-gecko/2.47.4/wine-gecko-2.47.4-x86_64.msi
-fi
-wine msiexec /i wine-gecko-2.47.4-x86_64.msi
+#wine msiexec /i setup/wine-mono-11.0.0-x86.msi
+#wine msiexec /i setup/wine-gecko-2.47.4-x86_64.msi
+echo "instalação do Dotnet48"
+winetricks -q dotnet48
+
+echo "instalação do Webview2"
+winetricks -q webview2
+
+echo "instalação do pactoes VisualStudio"
+winetricks -q vcrun2013
+winetricks -q vcrun2015
+winetricks -q vcrun2019
+winetricks -q vcrun2022
 
 wine winecfg -v win10
 
@@ -164,7 +179,7 @@ wine reg add "HKCU\Software\Wine\X11 Driver" /v Decorated /t REG_SZ /d N /f
 # Força o Tema (Belize Theme) 
 # https://help.sap.com/docs/sap_gui_for_windows/dfad9ecd79db404eba46fdd709013a78/e7d961683653451397a67607caafb9ad.html?locale=en-US
 wine reg add "HKCU\Software\SAP\General\Appearance" \
-/v SelectedTheme /t REG_DWORD /d 256 /f
+/v SelectedTheme /t REG_DWORD /d 1 /f
 
 #######################################
 # Criar um lançador simples
